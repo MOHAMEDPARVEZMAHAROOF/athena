@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Athena — source-cited study companion</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">A</span> Athena</div>
+  <nav>
+    <button data-tab="study" class="active">Study</button>
+    <button data-tab="quiz">Quiz</button>
+    <button data-tab="library">Library</button>
+    <button data-tab="progress">Progress</button>
+  </nav>
+  <div id="backend-badge" class="badge" title="LLM backend">…</div>
+</header>
+
+<main>
+  <!-- STUDY -->
+  <section id="tab-study" class="tab active">
+    <div class="chat-wrap">
+      <div id="chat-log" class="chat-log"></div>
+      <form id="chat-form" class="chat-form">
+        <input id="chat-input" placeholder="Ask anything about your study material…" autocomplete="off">
+        <button type="submit">Ask</button>
+      </form>
+    </div>
+    <aside class="sources" id="sources-panel">
+      <h3>Sources</h3>
+      <div id="sources-list" class="sources-list"><p class="muted">Cited passages appear here.</p></div>
+    </aside>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="tab-quiz" class="tab">
+    <div class="quiz-head">
+      <div>
+        <h2>Adaptive quiz</h2>
+        <p class="muted">Difficulty follows your per-topic rating. Wrong answers come back as reviews.</p>
+      </div>
+      <div class="quiz-actions">
+        <span id="due-badge" class="badge"></span>
+        <button id="next-q">New question</button>
+      </div>
+    </div>
+    <div id="quiz-card" class="card hidden">
+      <div class="quiz-meta"><span id="q-topic"></span><span id="q-diff"></span><span id="q-mode"></span><span id="q-review"></span></div>
+      <p id="q-prompt" class="q-prompt"></p>
+      <div id="q-choices" class="choices"></div>
+      <div id="q-feedback" class="feedback hidden"></div>
+    </div>
+    <p id="quiz-empty" class="muted">Upload study material in the Library tab, then start quizzing.</p>
+  </section>
+
+  <!-- LIBRARY -->
+  <section id="tab-library" class="tab">
+    <h2>Library</h2>
+    <form id="upload-form" class="card upload">
+      <input type="file" id="file-input" name="file" accept=".txt,.md,.markdown,.pdf,.png,.jpg,.jpeg,.webp" required>
+      <input type="text" id="title-input" name="title" placeholder="Title (optional)">
+      <input type="text" id="caption-input" name="caption" placeholder="Caption — for diagrams (optional)">
+      <button type="submit">Upload</button>
+    </form>
+    <div id="doc-list" class="doc-list"></div>
+  </section>
+
+  <!-- PROGRESS -->
+  <section id="tab-progress" class="tab">
+    <h2>Mastery</h2>
+    <div id="topic-bars" class="topic-bars"></div>
+    <div id="stats-row" class="stats-row"></div>
+  </section>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
